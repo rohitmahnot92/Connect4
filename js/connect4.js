@@ -1,29 +1,29 @@
 import PIXI from 'pixi.js';
 //variables used in setup
-var config;
-var renderer;
-var rootStage;
+let config;
+let renderer;
+let rootStage;
 //variables used to build the game layout
-var caption;
-var player;
-var texture;
-var graphics;
-var winner;
-var play_again;//button to start new game
+let caption;
+let player;
+let texture;
+let graphics;
+let winner;
+let play_again;//button to start new game
 
-var colorCounter=0; // variable that holds the total click count
-var yPosition=[5,5,5,5,5,5,5];//array that holds the y coordinates of the grid
-var color=[0xCD2626, 0x0000ff];//array containing colors to flip between players
+let colorCounter=0; // variable that holds the total click count
+let yPosition=[5,5,5,5,5,5,5];//array that holds the y coordinates of the grid
+const color=[0xCD2626, 0x0000ff];//array containing colors to flip between players
 //creating a 6x7 matrix
-var myarray=new Array(7);
-for (var i=0; i <7; i++)
+let myarray=new Array(7);
+for (let i=0; i <7; i++)
 myarray[i]=new Array(6);
 
 function init(_config){
 //reinitializing variables for new game, and clearing out the matrix
 	yPosition=[5,5,5,5,5,5,5];
 	myarray=new Array(7);
-	for (var i=0; i <7; i++)
+	for (let i=0; i <7; i++)
 	myarray[i]=new Array(6);
 
 	config = _config;
@@ -72,13 +72,13 @@ function build() {
 	play_again.interactive = true;
 	play_again.buttonMode = true;
 	//calling the init function, to restart the game when you click on 'play again'
-	play_again.on('mousedown', function() {
+	play_again.on('mousedown', () => {
 	  init(config);
 	});
-	var rows=0;//used to decide the number of rows in grid
-	var j =0;//used to decide the number of columns in the grid
+	let rows=0;//used to decide the number of rows in grid
+	const j =0;//used to decide the number of columns in the grid
 	//for loop, to make the 6x7 grid for the game.
-	for(var i=0; i<8; i++) {
+	for(let i=0; i<8; i++) {
 		//condition to check end of row		
 		if(i == 7){
 			rows++;
@@ -88,8 +88,8 @@ function build() {
 		if(rows==6)
 			break;
 		//calculating the position of the circles, based on the game resolution (700x670)
-		var x= 50 + 100*i;
-		var y= 120+ 100*rows;
+		const x= 50 + 100*i;
+		const y= 120+ 100*rows;
 		//drawing the empty yellow disc at the calculated position
 		graphics.lineStyle(0);
 		graphics.beginFill(0xFFFF0B, 0.5);
@@ -109,16 +109,16 @@ function build() {
 function onClick(eventData) {
 	//collecting the x coordinate of click  
 	// console.log(eventData.data.getLocalPosition(this.parent).x);
-	var xData= eventData.data.getLocalPosition(this.parent).x;
+	const xData= eventData.data.getLocalPosition(this.parent).x;
 	//calucluating the x,y position of the disc on the grid
-	var pos=parseInt(xData/100);
-	var x= 50 + 100*pos;
-	var y= 120+ 100*yPosition[pos];
+	const pos=parseInt(xData/100);
+	const x= 50 + 100*pos;
+	const y= 120+ 100*yPosition[pos];
 
 	if(y>=120){//checking if the y cordinate is valid
 		//variables holding x,y coordinates obtained above.
-		var a=pos;
-		var b=yPosition[pos];
+		const a=pos;
+		const b=yPosition[pos];
 		//logic to determine whether to fill matrix with 0 or 1, based on turn
 		if(colorCounter%2==0)
 			myarray[a][b]=0;
@@ -128,7 +128,7 @@ function onClick(eventData) {
 		// console.log(myarray[a][b]);
 		// console.log(myarray);
 
-		var count=0;//variable to count the number of consececutive connecting discs
+		let count=0;//variable to count the number of consececutive connecting discs
 
 		if(colorCounter>=6) {//checking for winner, minimum 7 turns
 
@@ -182,7 +182,7 @@ function onClick(eventData) {
 	    	//finish checking for rows
 
 	    	//check for first diagnol
-		    var num=1;//loop vriable to navigate through diagnols
+		    let num=1;//loop vriable to navigate through diagnols
 		    while(a+num<=6 && b+num<=5) {//checking for end of diagnol
 		    	if (myarray[a][b]==myarray[a+num][b+num]) {
 		    		//increment count if matrix values match
