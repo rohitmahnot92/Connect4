@@ -108,7 +108,7 @@ function build() {
 
 function onClick(eventData) {
 	//collecting the x coordinate of click  
-	console.log(eventData.data.getLocalPosition(this.parent).x);
+	// console.log(eventData.data.getLocalPosition(this.parent).x);
 	var xData= eventData.data.getLocalPosition(this.parent).x;
 	//calucluating the x,y position of the disc on the grid
 	var pos=parseInt(xData/100);
@@ -267,7 +267,7 @@ function onClick(eventData) {
 			  }
 			/*if all turns have not been played, and no winner has emerged, 
 			change the color of the disc for next turn. Note that we have already
-			incremented the value of colorCounter*/
+			incremented the value of colorCounter, so the color of disc changes*/
 			if(player.text=='Plays') {
 			  	graphics.lineStyle(0);
 			  	graphics.beginFill(color[(colorCounter)%2], 1.0);
