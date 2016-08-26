@@ -149,6 +149,8 @@ function onClick(eventData) {
 		  			winner.style.fill=0xFFFFFF;
 		  			//indicate the game has been won
 		  			player.text='Wins!';
+		  			graphics.interactive = false;
+					graphics.buttonMode = false;
 		  		}
 		  		else
 		  			//reinitialize count to 0, if 3 connections were not made
@@ -177,6 +179,9 @@ function onClick(eventData) {
 	  			winner.style.fill=0xFFFFFF;
 	  			//indicate the game has been won
 	  			player.text='Wins!';
+	  			//deactivate the clicks once game is over. Only 'Play Again' button works.	  			
+	  			graphics.interactive = false;
+				graphics.buttonMode = false;	  			
 	    	}
 	    	else
 	    		count=0;
@@ -213,6 +218,9 @@ function onClick(eventData) {
 	  			winner.style.fill=0xFFFFFF;
 	  			//indicate the game has been won
 	  			player.text='Wins!';
+	  			//deactivate the clicks once game is over. Only 'Play Again' button works.
+	  			graphics.interactive = false;
+				graphics.buttonMode = false;	  			
 		    } 
 		    //if game is not over, reinitialize count to 0, and num to 1, for next diagonal
 		    else {
@@ -243,6 +251,9 @@ function onClick(eventData) {
 				// console.log("game over");
 				winner.style.fill=0xFFFFFF;
 				player.text='Wins!';
+			    //deactivate the clicks once game is over. Only 'Play Again' button works.
+	  			graphics.interactive = false;
+				graphics.buttonMode = false;					
 			} 
 			else {
 				count=0;
