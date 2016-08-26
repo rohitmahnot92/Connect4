@@ -20,22 +20,23 @@ for (let i=0; i <7; i++)
 myarray[i]=new Array(6);
 
 function init(_config){
-//reinitializing variables for new game, and clearing out the matrix
+	//reinitializing variables for new game, and clearing out the matrix
 	yPosition=[5,5,5,5,5,5,5];
 	myarray=new Array(7);
 	for (let i=0; i <7; i++)
 	myarray[i]=new Array(6);
-
+	/*accessing the width,height and background color(black) of the grid from config, 
+	and feeding it on the game screen.*/
 	config = _config;
 	renderer= new PIXI.WebGLRenderer(config.resolution.width, config.resolution.height);
 	renderer.backgroundColor = config.backgroundColor;
 	document.body.innerHTML = '';
 	document.body.appendChild( renderer.view );
-
+	//using the pixi library to create discs and other graphics
 	rootStage = new PIXI.Container();
 	graphics = new PIXI.Graphics();
 	play_again = new PIXI.Graphics();
-//calling the build function to build the actual game layout, and then rendering it on the window
+	//calling the build function to build the actual game layout, and then rendering it on the window
 	build();
 	render();
 }//end of setup(_config)
@@ -115,7 +116,7 @@ function onClick(eventData) {
 	const x= 50 + 100*pos;
 	const y= 120+ 100*yPosition[pos];
 
-	if(y>=120){//checking if the y cordinate is valid
+	if(y>=120){//checking if the y coordinate is valid
 		//variables holding x,y coordinates obtained above.
 		const a=pos;
 		const b=yPosition[pos];
@@ -128,7 +129,7 @@ function onClick(eventData) {
 		// console.log(myarray[a][b]);
 		// console.log(myarray);
 
-		let count=0;//variable to count the number of consececutive connecting discs
+		let count=0;//variable to count the number of consecutive connecting discs
 
 		if(colorCounter>=6) {//checking for winner, minimum 7 turns
 
@@ -181,9 +182,9 @@ function onClick(eventData) {
 	    		count=0;
 	    	//finish checking for rows
 
-	    	//check for first diagnol
-		    let num=1;//loop vriable to navigate through diagnols
-		    while(a+num<=6 && b+num<=5) {//checking for end of diagnol
+	    	//check for first diagonal
+		    let num=1;//loop vriable to navigate through diagonals
+		    while(a+num<=6 && b+num<=5) {//checking for end of diagonal
 		    	if (myarray[a][b]==myarray[a+num][b+num]) {
 		    		//increment count if matrix values match
 		    		count++;
@@ -193,8 +194,8 @@ function onClick(eventData) {
 		    	else 
 		    		break;
 		    }
-		    num=1;//reinitialize loop variable to check other side of same diagnol
-		    while(a-num>=0 && b-num>=0) {//checking for other end of same diagnol
+		    num=1;//reinitialize loop variable to check other side of same diagonal
+		    while(a-num>=0 && b-num>=0) {//checking for other end of same diagonal
 		    	if(myarray[a][b]==myarray[a-num][b-num]){
 		    		//increment count if values match
 		    		count++;
@@ -213,14 +214,14 @@ function onClick(eventData) {
 	  			//indicate the game has been won
 	  			player.text='Wins!';
 		    } 
-		    //if game is not over, reinitialize count to 0, and num to 1, for next diagnol
+		    //if game is not over, reinitialize count to 0, and num to 1, for next diagonal
 		    else {
 		    	count=0;
 		    	num=1;
 		    }
-			//checked for diagnol 1
+			//checked for diagonal 1
 
-			//repeat what you do for the first diagnol, and check for winner.
+			//repeat what you do for the first diagonal, and check for winner.
 			while(a+num<=6 && b-num>=0) {
 				if (myarray[a][b]==myarray[a+num][b-num]) {
 					count++;
@@ -247,7 +248,7 @@ function onClick(eventData) {
 				count=0;
 				num=1;
 			}
-			//checked for diagnol 2
+			//checked for diagonal 2
 	
 		}//finished checking for all possibilities for winner
 
