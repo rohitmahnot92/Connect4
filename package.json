@@ -1,5 +1,5 @@
 {
-  "name": "reactproject",
+  "name": "connect4",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -23,8 +23,6 @@
     "ify-loader": "^1.0.3",
     "json-loader": "^0.5.4",
     "pixi.js": "^4.0.0",
-    "react": "^0.14.6",
-    "react-dom": "^0.14.6",
     "transform-loader": "^0.2.3",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
